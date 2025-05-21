@@ -6,17 +6,6 @@ function loadLevel(index) {
 	let level = levels[index];
 	gameState.platforms.length = 0;
 	level.platforms.forEach((p) => gameState.platforms.push({ ...p }));
-	gameState.movPlatforms.length = 0;
-	level.movPlatforms.forEach((p) => gameState.movPlatforms.push({ ...p }));
-	gameState.coins.length = 0;
-	level.coins.forEach((c) => gameState.coins.push({ ...c }));
-	gameState.buttons.length = 0;
-	level.buttons.forEach((b) => gameState.buttons.push({ ...b }));
-	gameState.powerUps.length = 0;
-	level.powerUps.forEach((p) => gameState.powerUps.push({ ...p }));
-	gameState.spikes.length = 0;
-	level.spikes.forEach((s) => gameState.spikes.push({ ...s }));
-	gameState.goal = level.goal;
 
 	gameState.player.x = 50;
 	gameState.player.y = 0;
