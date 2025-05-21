@@ -1,4 +1,4 @@
-import levels from "./levels.js";
+import levels from "./js/levels.js";
 import { gameState, canvas, ctx } from "./js/variablen.js";
 import { draw } from "./js/draw.js";
 
@@ -17,14 +17,6 @@ function loadLevel(index) {
 	gameState.spikes.length = 0;
 	level.spikes.forEach((s) => gameState.spikes.push({ ...s }));
 	gameState.goal = level.goal;
-
-	/* platforms = JSON.parse(JSON.stringify(level.platforms));
-	movPlatforms = JSON.parse(JSON.stringify(level.movPlatforms));
-	coins = JSON.parse(JSON.stringify(level.coins));
-	buttons = JSON.parse(JSON.stringify(level.buttons));
-	powerUps = JSON.parse(JSON.stringify(level.powerUps));
-	spikes = JSON.parse(JSON.stringify(level.spikes));
-	goal = level.goal; */
 
 	gameState.player.x = 50;
 	gameState.player.y = 0;
