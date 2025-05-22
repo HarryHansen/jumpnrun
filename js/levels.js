@@ -90,6 +90,7 @@ const levels = [
 		buttons: [],
 		powerUps: [],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 720, y: 310, width: 40, height: 40 },
 	},
 
@@ -184,6 +185,7 @@ const levels = [
 		buttons: [],
 		powerUps: [],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 600, y: 340, width: 40, height: 40 },
 	},
 
@@ -345,6 +347,7 @@ const levels = [
 		buttons: [],
 		powerUps: [],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 380, y: 20, width: 40, height: 40 },
 	},
 
@@ -439,6 +442,7 @@ const levels = [
 		buttons: [],
 		powerUps: [],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 600, y: 460, width: 40, height: 40 },
 	},
 
@@ -608,6 +612,7 @@ const levels = [
 		],
 		powerUps: [],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 380, y: 10, width: 40, height: 40 },
 	},
 
@@ -733,6 +738,7 @@ const levels = [
 			},
 		],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 380, y: 10, width: 40, height: 40 },
 	},
 
@@ -875,6 +881,7 @@ const levels = [
 			},
 		],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 380, y: 10, width: 40, height: 40 },
 	},
 
@@ -988,6 +995,7 @@ const levels = [
 			},
 		],
 		spikes: [],
+		platRespawnTime: 5000,
 		goal: { x: 750, y: 720, width: 40, height: 40 },
 	},
 
@@ -1564,6 +1572,7 @@ const levels = [
 			{ x: 720, y: 740, width: 40, height: 20 },
 			{ x: 760, y: 740, width: 40, height: 20 },
 		],
+		platRespawnTime: 5000,
 		goal: { x: 750, y: 360, width: 40, height: 40 },
 	},
 
@@ -1813,6 +1822,7 @@ const levels = [
 			{ x: 720, y: 740, width: 40, height: 20 },
 			{ x: 760, y: 740, width: 40, height: 20 },
 		],
+		platRespawnTime: 5000,
 		goal: { x: 380, y: 20, width: 40, height: 40 },
 	},
 
@@ -1954,6 +1964,7 @@ const levels = [
 			{ x: 110, y: 160, width: 40, height: 20 },
 			{ x: 400, y: 320, width: 40, height: 20 },
 		],
+		platRespawnTime: 5000,
 		goal: { x: 380, y: 20, width: 40, height: 40 },
 	},
 
@@ -2115,7 +2126,7 @@ const levels = [
 				respawnTimer: null,
 				group: "A",
 				color: "rgb(85, 60, 0)",
-			}, // unter Goal
+			},// unter Goal
 		],
 		movPlatforms: [
 			// Bewegliche Plattform (horizontal)
@@ -2197,7 +2208,161 @@ const levels = [
 			{ x: 300, y: 740, width: 100, height: 20 },
 		],
 
+		platRespawnTime: 5000,
 		goal: { x: 750, y: 60, width: 40, height: 40 },
+	},
+	// Level 13 - Sprungtaktik und Zeitdruck
+	{
+		platforms: [
+			// Boden
+			{
+				x: 0,
+				y: 760,
+				width: 800,
+				height: 40,
+				solid: true,
+				breakable: false,
+				isBroken: false,
+				breakTimer: null,
+				respawnTimer: null,
+				group: "A",
+				color: "green",
+			},
+
+			// Startrampe
+			{
+				x: 50,
+				y: 700,
+				width: 100,
+				height: 10,
+				solid: false,
+				breakable: true,
+				isBroken: false,
+				breakTimer: null,
+				respawnTimer: null,
+				group: "A",
+				color: "rgb(85, 60, 0)",
+			},
+
+			// Statische Zwischenplattformen
+			{
+				x: 250,
+				y: 650,
+				width: 100,
+				height: 10,
+				solid: false,
+				breakable: true,
+				isBroken: false,
+				breakTimer: null,
+				respawnTimer: null,
+				group: "A",
+				color: "rgb(85, 60, 0)",
+			},
+			{
+				x: 500,
+				y: 590,
+				width: 100,
+				height: 10,
+				solid: false,
+				breakable: true,
+				isBroken: false,
+				breakTimer: null,
+				respawnTimer: null,
+				group: "A",
+				color: "rgb(85, 60, 0)",
+			},
+			//Plattform unter Button
+			{
+				x: 710,
+				y: 400,
+				width: 40,
+				height: 10,
+				solid: false,
+				breakable: false,
+				isBroken: false,
+				breakTimer: null,
+				respawnTimer: null,
+				group: "A",
+				color: "rgb(85, 60, 0)",
+			},
+
+			// Plattform unter dem Ziel
+			{
+				x: 700,
+				y: 100,
+				width: 40,
+				height: 10,
+				solid: false,
+				breakable: false,
+				isBroken: false,
+				breakTimer: null,
+				respawnTimer: null,
+				group: "A",
+				color: "rgb(85, 60, 0)",
+			},
+		],
+
+		movPlatforms: [
+			// Vertikale Plattform, durch Button aktiviert
+			{
+				x: 600,
+				y: 730,
+				width: 100,
+				height: 10,
+				solid: false,
+				breakable: false,
+				isBroken: false,
+				type: "verticalMoving",
+				originalX: 600,
+				originalY: 730,
+				range: 600,
+				speed: 1.8,
+				movingForward: false,
+				movingDownwards: false,
+				active: false,
+				color: "purple",
+				group: "B",
+			},
+		],
+
+		coins: [
+			{ x: 60, y: 680, width: 20, height: 20, collected: false },
+			{ x: 260, y: 630, width: 20, height: 20, collected: false },
+			{ x: 510, y: 570, width: 20, height: 20, collected: false },
+			{ x: 160, y: 480, width: 20, height: 20, collected: false },
+			{ x: 310, y: 430, width: 20, height: 20, collected: false },
+			{ x: 410, y: 350, width: 20, height: 20, collected: false },
+		],
+
+		buttons: [
+			{
+				x: 710,
+				y: 390,
+				width: 40,
+				height: 10,
+				targetGroup: "B",
+				pressed: false,
+			},
+		],
+
+		powerUps: [
+			{
+				x: 500,
+				y: 540,
+				width: 20,
+				height: 20,
+				collected: false,
+				type: "highJump",
+			},
+		],
+
+		spikes: [
+			{ x: 400, y: 740, width: 100, height: 20 },
+			{ x: 200, y: 740, width: 80, height: 20 },
+		],
+
+		platRespawnTime: 4500,
+		goal: { x: 700, y: 60, width: 40, height: 40 },
 	},
 ];
 // Export the levels array

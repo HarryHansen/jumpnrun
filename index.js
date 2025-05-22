@@ -18,6 +18,8 @@ function loadLevel(index) {
 	level.spikes.forEach((s) => gameState.spikes.push({ ...s }));
 	gameState.goal = level.goal;
 
+	gameState.platRespawnTime = level.platRespawnTime;
+
 	gameState.player.x = 50;
 	gameState.player.y = 0;
 	gameState.player.ySpeed = 0;
@@ -197,7 +199,7 @@ function handleBreakablePlatforms() {
 					plat.respawnTimer = setTimeout(() => {
 						plat.isBroken = false;
 						plat.respawnTimer = null;
-					}, 5000);
+					}, gameState.platRespawnTime);
 				}, 2000);
 			}
 		}

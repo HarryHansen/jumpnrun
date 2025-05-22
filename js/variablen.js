@@ -22,6 +22,7 @@ export const gameState = {
 	powerUps: [],
 	spikes: [],
 	goal: null,
+	platRespawnTime: '',
 	MAGNET_RADIUS: 150,
 	MAGNET_SPEED: 10,
 	magnetActive: false,
