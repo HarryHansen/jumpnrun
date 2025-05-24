@@ -1,8 +1,13 @@
 import levels from "./js/levels.js";
 import { gameState, canvas, ctx } from "./js/variablen.js";
 import { draw } from "./js/draw.js";
+import "./entwicklertools/tastenaktionen_aufzeichnen.js";
+import {
+	recordedInputs,
+	playRecording,
+} from "./entwicklertools/tastenaktionen_aufzeichnen.js";
 
-function loadLevel(index) {
+export function loadLevel(index) {
 	let level = levels[index];
 	gameState.platforms.length = 0;
 	level.platforms.forEach((p) => gameState.platforms.push({ ...p }));
@@ -58,6 +63,22 @@ function update() {
 			: gameState.gravity;
 		gameState.player.y += gameState.player.ySpeed;
 	}
+	//if (gameState.keys["KeyS"]) stopRecording(); // S für "stop"
+	if (gameState.keys["KeyP"]) playRecording(); // P für "play"
+	if (gameState.keys["KeyL"]) loadLevel(gameState.currentLevel); // L für "load current level"
+	if (gameState.keys["KeyC"]) {
+		recordedInputs.length = 0; // Leere das Array
+		localStorage.removeItem("recordedInputs");
+		console.log("Aufgezeichnete Eingaben gelöscht.");
+	}
+	if (gameState.keys["Slash"]) {
+		localStorage.removeItem("level");
+		gameState.currentLevel = 0;
+		loadLevel(gameState.currentLevel);
+		console.log("Spiel zurückgesetzt.");
+	}
+	if (gameState.keys["KeyG"])
+		console.log("Aufgezeichnete Eingaben:", recordedInputs);
 }
 
 function checkCollisions() {
@@ -200,7 +221,7 @@ function handleBreakablePlatforms() {
 						plat.isBroken = false;
 						plat.respawnTimer = null;
 					}, gameState.platRespawnTime);
-				}, 2000);
+				}, plat.timeTillBreakAfterContact);
 			}
 		}
 	}
@@ -323,7 +344,7 @@ function checkGoal() {
 			loadLevel(gameState.currentLevel);
 			gameState.score = 0;
 		} else {
-			alert("🎉 Du hast alle Level geschafft!");
+			// alert("🎉 Du hast alle Level geschafft!");
 			gameState.keys = {};
 			gameState.score = 0;
 		}
