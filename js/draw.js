@@ -39,6 +39,7 @@ export function draw() {
 	drawFloatingEffect(ctx, gameState.player);
 	drawMagnetAura(ctx, gameState.player);
 	drawSpikes(ctx);
+	drawPortals(ctx);
 }
 
 function drawCoins(ctx) {
@@ -76,6 +77,18 @@ function drawGoal(ctx) {
 			gameState.goal.y,
 			gameState.goal.width,
 			gameState.goal.height,
+		);
+	}
+}
+
+function drawPortals(ctx) {
+	for (let portal of gameState.portals) {
+		ctx.fillStyle = portal.color;
+		ctx.fillRect(
+			portal.x,
+			portal.y,
+			portal.width,
+			portal.height,
 		);
 	}
 }

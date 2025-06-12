@@ -21,6 +21,7 @@ export const gameState = {
 	buttons: [],
 	powerUps: [],
 	spikes: [],
+	portals: [],
 	goal: null,
 	platRespawnTime: '',
 	MAGNET_RADIUS: 150,
