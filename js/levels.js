@@ -97,7 +97,7 @@ const levels = [
 		powerUps: [],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 720, y: 310, width: 40, height: 40 },
 	},
 
@@ -199,7 +199,7 @@ const levels = [
 		powerUps: [],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 600, y: 340, width: 40, height: 40 },
 	},
 
@@ -373,7 +373,7 @@ const levels = [
 		powerUps: [],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 380, y: 20, width: 40, height: 40 },
 	},
 
@@ -475,7 +475,7 @@ const levels = [
 		powerUps: [],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 600, y: 460, width: 40, height: 40 },
 	},
 
@@ -657,7 +657,7 @@ const levels = [
 		powerUps: [],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 380, y: 10, width: 40, height: 40 },
 	},
 
@@ -791,7 +791,7 @@ const levels = [
 		],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 380, y: 10, width: 40, height: 40 },
 	},
 
@@ -944,7 +944,7 @@ const levels = [
 		],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 380, y: 10, width: 40, height: 40 },
 	},
 
@@ -1065,7 +1065,7 @@ const levels = [
 		],
 		spikes: [],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 750, y: 720, width: 40, height: 40 },
 	},
 
@@ -1677,7 +1677,7 @@ const levels = [
 			{ x: 760, y: 740, width: 40, height: 20 },
 		],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 750, y: 360, width: 40, height: 40 },
 	},
 
@@ -2094,7 +2094,7 @@ const levels = [
 			{ x: 400, y: 320, width: 40, height: 20 },
 		],
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 380, y: 20, width: 40, height: 40 },
 	},
 
@@ -2352,7 +2352,7 @@ const levels = [
 		],
 
 		portals: [],
-		platRespawnTime: 5000,
+		platRespawnTime: 2500,
 		goal: { x: 750, y: 60, width: 40, height: 40 },
 	},
 	// Level 13 - Sprungtaktik
@@ -2512,7 +2512,7 @@ const levels = [
 		],
 
 		portals: [],
-		platRespawnTime: 4500,
+		platRespawnTime: 2500,
 		goal: { x: 700, y: 60, width: 40, height: 40 },
 	},
 	// Level 14 - Schwebepfade und Präzisionssprünge + Zeitdruck
@@ -2629,7 +2629,7 @@ const levels = [
 		],
 
 		portals: [],
-		platRespawnTime: 4000,
+		platRespawnTime: 2500,
 		goal: { x: 710, y: 160, width: 40, height: 40 },
 	},
 	// Level 15 - Schwebepfade und Präzisionssprünge
@@ -2900,7 +2900,7 @@ const levels = [
 				group: "A",
 			},
 		],
-		platRespawnTime: 4000,
+		platRespawnTime: 2500,
 		goal: { x: 50, y: 420, width: 40, height: 40 },
 	},
 ];
