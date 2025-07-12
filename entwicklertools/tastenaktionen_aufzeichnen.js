@@ -96,10 +96,17 @@ window.addEventListener("keydown", (e) => {
 		console.log("Aufgezeichnete Eingaben gelöscht.");
 	}
 	if (e.key === "-") {
-		localStorage.removeItem("level");
-		gameState.currentLevel = 0;
-		loadLevel(gameState.currentLevel);
-		console.log("Spiel zurückgesetzt.");
+		e.preventDefault();
+		console.log("Minus-Taste gedrückt");
+		let confirmed = confirm("Bist du sicher, dass du das Spiel zurücksetzen möchtest? Alle Fortschritte gehen verloren.");
+		console.log(confirmed);
+		if(confirmed) {
+			localStorage.removeItem("level");
+			gameState.currentLevel = 0;
+			loadLevel(gameState.currentLevel);
+			console.log("Spiel zurückgesetzt.");
+			location.reload();
+		}
 	}
 	if (e.key === "g") console.log("Aufgezeichnete Eingaben:", recordedInputs);
 });

@@ -7,6 +7,8 @@ export function draw() {
 		ctx.fillStyle = plat.isBroken ? "transparent" : plat.color;
 		ctx.fillRect(plat.x, plat.y, plat.width, plat.height);
 	}
+
+	drawPortals(ctx);
 	// Zeichne Spieler
 	ctx.fillStyle = gameState.player.color;
 	ctx.fillRect(
@@ -39,7 +41,6 @@ export function draw() {
 	drawFloatingEffect(ctx, gameState.player);
 	drawMagnetAura(ctx, gameState.player);
 	drawSpikes(ctx);
-	drawPortals(ctx);
 }
 
 function drawCoins(ctx) {

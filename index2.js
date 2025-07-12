@@ -66,22 +66,6 @@ function update() {
 			: gameState.gravity;
 		gameState.player.y += gameState.player.ySpeed;
 	}
-	//if (gameState.keys["KeyS"]) stopRecording(); // S für "stop"
-	if (gameState.keys["KeyP"]) playRecording(); // P für "play"
-	if (gameState.keys["KeyL"]) loadLevel(gameState.currentLevel); // L für "load current level"
-	if (gameState.keys["KeyC"]) {
-		recordedInputs.length = 0; // Leere das Array
-		localStorage.removeItem("recordedInputs");
-		console.log("Aufgezeichnete Eingaben gelöscht.");
-	}
-	if (gameState.keys["Slash"]) {
-		localStorage.removeItem("level");
-		gameState.currentLevel = 0;
-		loadLevel(gameState.currentLevel);
-		console.log("Spiel zurückgesetzt.");
-	}
-	if (gameState.keys["KeyG"])
-		console.log("Aufgezeichnete Eingaben:", recordedInputs);
 }
 
 function checkCollisions() {
