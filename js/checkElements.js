@@ -140,8 +140,10 @@ export function checkPortals() {
 			for (let targetPortal of gameState.portals) {
 				if (
 					targetPortal.type === "end" &&
-					targetPortal.targetGroup === portal.targetGroup
+					targetPortal.group === portal.group
 				) {
+					console.log("Teleporting from: ", portal);
+					console.log("Teleporting to: ", targetPortal);
                     gameState.player.ySpeed = 0;
 					gameState.player.x = targetPortal.x;
 					gameState.player.y = targetPortal.y;

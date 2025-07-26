@@ -23,6 +23,8 @@ export const gameState = {
 	spikes: [],
 	portals: [],
 	goal: null,
+	height: 800,
+	width: 800,
 	platRespawnTime: '',
 	MAGNET_RADIUS: 150,
 	MAGNET_SPEED: 10,

@@ -2,6 +2,8 @@ import { gameState, ctx, canvas } from "./variablen.js";
 
 export function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	canvas.width = gameState.width;
+	canvas.height = gameState.height;
 	// Zeichne statische Plattformen
 	for (let plat of gameState.platforms) {
 		ctx.fillStyle = plat.isBroken ? "transparent" : plat.color;

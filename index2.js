@@ -10,6 +10,8 @@ import { checkCoinCollisions, checkButtons, checkGoal, checkPortals, checkPowerU
 
 export function loadLevel(index) {
 	let level = levels[index];
+	gameState.width = level.width || 800; // Fallback auf 800, falls nicht definiert
+	gameState.height = level.height || 800; // Fallback auf 800, falls nicht
 	gameState.platforms.length = 0;
 	level.platforms.forEach((p) => gameState.platforms.push({ ...p }));
 	gameState.movPlatforms.length = 0;
