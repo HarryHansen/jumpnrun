@@ -1,5 +1,5 @@
 import levels from "./js/levels.js";
-import { gameState, canvas, ctx } from "./js/variablen.js";
+import { gameState, canvas } from "./js/variablen.js";
 import { draw } from "./js/draw.js";
 import "./entwicklertools/tastenaktionen_aufzeichnen.js";
 import {
@@ -10,8 +10,8 @@ import { checkCoinCollisions, checkButtons, checkGoal, checkPortals, checkPowerU
 
 export function loadLevel(index) {
 	let level = levels[index];
-	gameState.width = level.width || 800; // Fallback auf 800, falls nicht definiert
-	gameState.height = level.height || 800; // Fallback auf 800, falls nicht
+	gameState.width = level.width || 800; // default is 800, if nott specified
+	gameState.height = level.height || 800; // default is 800, if nott specified
 	gameState.platforms.length = 0;
 	level.platforms.forEach((p) => gameState.platforms.push({ ...p }));
 	gameState.movPlatforms.length = 0;
@@ -36,7 +36,7 @@ export function loadLevel(index) {
 	gameState.player.onGround = false;
 	localStorage.setItem("level", index);
 	console.log("level" + gameState.currentLevel);
-	gameState.jumpStrength = -10; // Änderung der Eigenschaft im gameState-Objekt
+	gameState.jumpStrength = -10; // default jump strength
 	clearInterval(gameState.refreshIntervalId);
 	gameState.score = 0;
 	gameState.magnetActive = false;
@@ -45,8 +45,8 @@ export function loadLevel(index) {
 document.addEventListener("keydown", (e) => (gameState.keys[e.code] = true));
 document.addEventListener("keyup", (e) => (gameState.keys[e.code] = false));
 
-function update() {
-	// Hier wird gameState.player verwendet statt player
+function updatePlayerPosition() {
+	// Update player position based on keys pressed
 	if (gameState.keys["ArrowLeft"] && gameState.player.x >= 5)
 		gameState.player.x -= 5;
 	if (
@@ -62,7 +62,6 @@ function update() {
 		gameState.player.onGround = false;
 	}
 	if (!gameState.player.onGround) {
-		// Nutze gameState.gravity und gameState.floatGravity, ggf. auch gameState.isFloating
 		gameState.player.ySpeed += gameState.isFloating
 			? gameState.floatGravity
 			: gameState.gravity;
@@ -72,7 +71,7 @@ function update() {
 
 function checkCollisions() {
 	gameState.player.onGround = false;
-	// Prüfe statische Plattformen
+	// Check for collisions with platforms
 	for (let plat of gameState.platforms) {
 		const ignore = gameState.keys["ArrowDown"] && !plat.solid;
 		if (ignore || plat.isBroken) continue;
@@ -145,10 +144,11 @@ function checkCollisions() {
 }
 
 function isStandingOnPlatform(player, platform) {
+	// Check if the player is standing on the platform
 	const playerBottom = player.y + player.height;
 	const platformTop = platform.y;
 	return (
-		playerBottom <= platformTop + 5 && // etwas Spielraum
+		playerBottom <= platformTop + 5 && 
 		playerBottom >= platformTop - 5 &&
 		player.x + player.width > platform.x &&
 		player.x < platform.x + platform.width
@@ -168,13 +168,13 @@ function handleBreakablePlatforms() {
 			gameState.player.x < plat.x + plat.width;
 
 		if (onSameLevel && horizontallyAligned) {
-			// Timer starten, wenn noch keiner läuft
+			// Start the break timer if not already set
 			if (!plat.breakTimer) {
 				plat.breakTimer = setTimeout(() => {
 					plat.isBroken = true;
 					plat.breakTimer = null;
 
-					// Nach 5 Sekunden respawnen
+					// reset the platform after respawn time
 					plat.respawnTimer = setTimeout(() => {
 						plat.isBroken = false;
 						plat.respawnTimer = null;
@@ -185,40 +185,8 @@ function handleBreakablePlatforms() {
 	}
 }
 
-export function allCoinsCollected() {
-	return gameState.coins.every((coin) => coin.collected);
-}
-
-// === Schwebe-Effekt aktivieren ===
-export function activateFloating() {
-	gameState.isFloating = true;
-
-	// Optional: Partikel- oder Soundeffekt starten
-	console.log("🪂 Schwebe-Feder aktiviert!");
-
-	setTimeout(() => {
-		gameState.isFloating = false;
-		console.log("🪂 Schwebe-Effekt vorbei.");
-	}, gameState.floatDuration);
-}
-
-export function updateMagnetEffect() {
-	gameState.magnetActive = true;
-	const { player, coins, MAGNET_RADIUS, MAGNET_SPEED } = gameState;
-	for (let coin of coins) {
-		let dx = player.x - coin.x;
-		let dy = player.y - coin.y;
-		let distance = Math.sqrt(dx * dx + dy * dy);
-		if (distance < MAGNET_RADIUS) {
-			let angle = Math.atan2(dy, dx);
-			coin.x += Math.cos(angle) * MAGNET_SPEED;
-			coin.y += Math.sin(angle) * MAGNET_SPEED;
-		}
-	}
-}
-
 function loop() {
-	update();
+	updatePlayerPosition();
 	handleBreakablePlatforms();
 	checkPowerUps();
 	checkCoinCollisions();

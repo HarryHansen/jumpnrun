@@ -1,39 +1,46 @@
-import { gameState, canvas, ctx } from "./variablen.js"
+// import all necessary modules and variables
+import { gameState } from "./variablen.js";
 import levels from "./levels.js";
-import { loadLevel, activateFloating, allCoinsCollected, updateMagnetEffect } from "../index2.js";
+import {
+	loadLevel,
+} from "../index2.js";
 
 export function checkCoinCollisions() {
-    for (let coin of gameState.coins) {
-        if (coin.collected) continue;
+	for (let coin of gameState.coins) {
+		if (coin.collected) continue;
 
-        const isColliding =
-            gameState.player.x < coin.x + coin.width &&
-            gameState.player.x + gameState.player.width > coin.x &&
-            gameState.player.y < coin.y + coin.height &&
-            gameState.player.y + gameState.player.height > coin.y;
+		const isColliding =
+			gameState.player.x < coin.x + coin.width &&
+			gameState.player.x + gameState.player.width > coin.x &&
+			gameState.player.y < coin.y + coin.height &&
+			gameState.player.y + gameState.player.height > coin.y;
 
-        if (isColliding) {
-            coin.collected = true;
-            gameState.score++; // wenn du eine Punktzahl hast
-            // evtl. Sound abspielen oder Animation
-        }
-    }
+		if (isColliding) {
+			coin.collected = true;
+			gameState.score++; // increase coin count
+			// wanna play a sound here?
+		}
+	}
 }
 
 export function checkSpikeCollision() {
-    for (let spike of gameState.spikes) {
-        if (
-            gameState.player.x < spike.x + spike.width &&
-            gameState.player.x + gameState.player.width > spike.x &&
-            gameState.player.y < spike.y + spike.height &&
-            gameState.player.y + gameState.player.height > spike.y
-        ) {
-            loadLevel(gameState.currentLevel);
-        }
-    }
+	// This function checks if the player collides with any spikes.
+	// If so, it resets the level.
+	for (let spike of gameState.spikes) {
+		if (
+			gameState.player.x < spike.x + spike.width &&
+			gameState.player.x + gameState.player.width > spike.x &&
+			gameState.player.y < spike.y + spike.height &&
+			gameState.player.y + gameState.player.height > spike.y
+		) {
+			loadLevel(gameState.currentLevel);
+		}
+	}
 }
 
 export function checkButtons() {
+	// This function checks if the player is standing on any button.
+	// If so, it activates the button and reveals all hidden platforms in the same group.
 	for (const button of gameState.buttons) {
 		const isHorizontallyOnButton =
 			gameState.player.x + gameState.player.width > button.x &&
@@ -42,7 +49,7 @@ export function checkButtons() {
 		const isVerticallyOnButton =
 			gameState.player.y + gameState.player.height > button.y &&
 			gameState.player.y + gameState.player.height <
-				button.y + button.height + 10; // mehr Toleranz
+				button.y + button.height + 10;
 
 		const playerStandingOnButton =
 			isHorizontallyOnButton && isVerticallyOnButton;
@@ -50,7 +57,7 @@ export function checkButtons() {
 		if (playerStandingOnButton && !button.pressed) {
 			button.pressed = true;
 
-			// Alle Plattformen aktivieren, die versteckt gestartet sind
+			// Reveal all hidden platforms of the certain group
 			for (const plat of gameState.platforms) {
 				if (
 					plat.isBroken &&
@@ -77,35 +84,43 @@ export function checkButtons() {
 }
 
 export function checkPowerUps() {
-	for (const p of gameState.powerUps) {
+	// This function checks if the player collides with any power-ups.
+	// If so, it activates the corresponding power-up effect and marks it as collected.
+	for (const powerUp of gameState.powerUps) {
 		if (
-			!p.collected &&
-			gameState.player.x + gameState.player.width > p.x &&
-			gameState.player.x < p.x + p.width &&
-			gameState.player.y + gameState.player.height > p.y &&
-			gameState.player.y < p.y + p.height
+			!powerUp.collected &&
+			gameState.player.x + gameState.player.width > powerUp.x &&
+			gameState.player.x < powerUp.x + powerUp.width &&
+			gameState.player.y + gameState.player.height > powerUp.y &&
+			gameState.player.y < powerUp.y + powerUp.height
 		) {
-			p.collected = true;
+			powerUp.collected = true;
 
-			if (p.type === "highJump") {
-				gameState.jumpStrength = -15;
-			}
-			if (p.type === "feather") {
-				activateFloating();
-			}
-			if (p.type === "magnet") {
-				gameState.refreshIntervalId = setInterval(updateMagnetEffect, 150);
-				setTimeout(function () {
-					clearInterval(gameState.refreshIntervalId);
-					gameState.magnetActive = false;
-				}, 30000);
+			switch (powerUp.type) {
+				case "feather":
+					activateFloating();
+					break;
+				case "magnet":
+					gameState.refreshIntervalId = setInterval(updateMagnetEffect, 150);
+					setTimeout(function () {
+						clearInterval(gameState.refreshIntervalId);
+						gameState.magnetActive = false;
+					}, 30000);
+					break;
+				case "highJump":
+					gameState.jumpStrength = -15;
+					break;
+				default:
+					console.warn("Unbekannter Power-Up-Typ:", powerUp.type);
+					break;
 			}
 		}
 	}
 }
 
 export function checkGoal() {
-	// Hier wird gameState.goal verwendet statt goal
+	// This function checks if the player has reached the goal of the level.
+	// If so, it loads the next level or - if all levels are completed - resets to the first level.
 	if (
 		gameState.player.x < gameState.goal.x + gameState.goal.width &&
 		gameState.player.x + gameState.player.width > gameState.goal.x &&
@@ -121,14 +136,15 @@ export function checkGoal() {
 			alert("🎉 Du hast alle Level geschafft!");
 			gameState.keys = {};
 			gameState.score = 0;
-			gameState.currentLevel = 0; // Zurück zum ersten Level
+			gameState.currentLevel = 0; // Load the first level again
 			loadLevel(gameState.currentLevel);
 		}
 	}
 }
 
 export function checkPortals() {
-	// Hier wird gameState.goal verwendet statt goal
+	// This function iterates through all portals and checks if the player is colliding with a start portal.
+	// If so, it teleports the player to the corresponding end portal of the same group
 	for (let portal of gameState.portals) {
 		if (
 			gameState.player.x < portal.x + portal.width &&
@@ -144,7 +160,7 @@ export function checkPortals() {
 				) {
 					console.log("Teleporting from: ", portal);
 					console.log("Teleporting to: ", targetPortal);
-                    gameState.player.ySpeed = 0;
+					gameState.player.ySpeed = 0;
 					gameState.player.x = targetPortal.x;
 					gameState.player.y = targetPortal.y;
 					gameState.player.ySpeed = 0; // Reset ySpeed after teleporting
@@ -153,4 +169,35 @@ export function checkPortals() {
 			}
 		}
 	}
+}
+
+export function activateFloating() {
+	gameState.isFloating = true;
+
+	console.log("🪂 Floating activated!");
+
+	setTimeout(() => {
+		gameState.isFloating = false;
+		console.log("🪂 Stopped floating.");
+	}, gameState.floatDuration);
+}
+
+export function updateMagnetEffect() {
+	// This function applies the magnet effect to coins within a certain radius of the player.
+	gameState.magnetActive = true;
+	const { player, coins, MAGNET_RADIUS, MAGNET_SPEED } = gameState;
+	for (let coin of coins) {
+		let dx = player.x - coin.x;
+		let dy = player.y - coin.y;
+		let distance = Math.sqrt(dx * dx + dy * dy);
+		if (distance < MAGNET_RADIUS) {
+			let angle = Math.atan2(dy, dx);
+			coin.x += Math.cos(angle) * MAGNET_SPEED;
+			coin.y += Math.sin(angle) * MAGNET_SPEED;
+		}
+	}
+}
+
+export function allCoinsCollected() {
+	return gameState.coins.every((coin) => coin.collected);
 }
