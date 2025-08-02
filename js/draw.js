@@ -1,17 +1,17 @@
-import { gameState, ctx, canvas } from "./variablen.js";
+import { gameState, ctx, canvas } from "./variables.js";
 
 export function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	canvas.width = gameState.width;
 	canvas.height = gameState.height;
-	// Zeichne statische Plattformen
+	// Draw static platforms
 	for (let plat of gameState.platforms) {
 		ctx.fillStyle = plat.isBroken ? "transparent" : plat.color;
 		ctx.fillRect(plat.x, plat.y, plat.width, plat.height);
 	}
 
 	drawPortals(ctx);
-	// Zeichne Spieler
+	// Draw player
 	ctx.fillStyle = gameState.player.color;
 	ctx.fillRect(
 		gameState.player.x,
@@ -20,12 +20,11 @@ export function draw() {
 		gameState.player.height,
 	);
 
-	// Zeichne bewegliche Plattformen
+	// Draw moving platforms
 	for (let movPlat of gameState.movPlatforms) {
 		ctx.fillStyle = movPlat.isBroken ? "transparent" : movPlat.color;
 		ctx.fillRect(movPlat.x, movPlat.y, movPlat.width, movPlat.height);
 	}
-	// Zeichne Spieler nochmal (falls nötig)
 	ctx.fillStyle = gameState.player.color;
 	ctx.fillRect(
 		gameState.player.x,
@@ -66,7 +65,7 @@ function drawScore(ctx) {
 	ctx.fillStyle = "black";
 	ctx.font = "20px Arial";
 	ctx.fillText(
-		"Münzen: " + gameState.score + "/" + gameState.coins.length,
+		"Coins: " + gameState.score + "/" + gameState.coins.length,
 		10,
 		30,
 	);
@@ -163,7 +162,7 @@ function drawFloatingEffect(ctx, player) {
 			0,
 			Math.PI * 2,
 		);
-		ctx.fillStyle = "rgba(0, 117, 157, 0.59)"; // hellblau
+		ctx.fillStyle = "rgba(0, 117, 157, 0.59)";
 		ctx.fill();
 		ctx.restore();
 	}

@@ -1,4 +1,4 @@
-import { gameState, canvas, ctx } from "../js/variablen.js";
+import { gameState } from "../js/variables.js";
 import { loadLevel } from "../index2.js";
 
 export let recordedInputs = [];
@@ -45,21 +45,21 @@ if (!localStorage.getItem("recordedInputs")) {
 } else {
 	recordedInputs = JSON.parse(localStorage.getItem("recordedInputs"));
 }
-console.log("Aufgezeichnete Eingaben:", recordedInputs);
+console.log("Recorded inputs: ", recordedInputs);
 let isRecording = false;
 let startTime = 0;
 
 function startRecording() {
 	isRecording = true;
 	// recordedInputs = [];
-	console.log("Aufzeichnung gestartet...");
+	console.log("Recording started...");
 	startTime = performance.now();
 }
 
 function stopRecording() {
 	isRecording = false;
-	console.log("Aufzeichnung gestoppt.");
-	console.log("Aufgezeichnete Eingaben:", recordedInputs);
+	console.log("Recording stopped ...");
+	console.log("Recorded inputs:", recordedInputs);
 	localStorage.setItem("recordedInputs", JSON.stringify(recordedInputs));
 }
 
@@ -84,35 +84,35 @@ window.addEventListener("keyup", (e) => {
 	}
 });
 
-// Beispiel: Tastenkombinationen zur Steuerung
 window.addEventListener("keydown", (e) => {
-	if (e.key === "r") startRecording(); // R für "record"
-	if (e.key === "s") stopRecording(); // S für "stop"
-	if (e.key === "p") playRecording(); // P für "play"
-	if (e.key === "l") loadLevel(gameState.currentLevel); // L für "load current level"
+	if (e.key === "r") startRecording(); // R short for "record"
+	if (e.key === "s") stopRecording(); // S short for "stop"
+	if (e.key === "p") playRecording(); // P short for "play"
+	if (e.key === "l") loadLevel(gameState.currentLevel); // L short for "load current level"
 	if (e.key === "c") {
 		recordedInputs = [];
 		localStorage.removeItem("recordedInputs");
-		console.log("Aufgezeichnete Eingaben gelöscht.");
+		console.log("Deleted recorded inputs.");
 	}
 	if (e.key === "-") {
 		e.preventDefault();
-		console.log("Minus-Taste gedrückt");
-		let confirmed = confirm("Bist du sicher, dass du das Spiel zurücksetzen möchtest? Alle Fortschritte gehen verloren.");
+		let confirmed = confirm(
+			"Are you sure that you wanna restart this game? All progress will be deleted irrevocably.",
+		);
 		console.log(confirmed);
-		if(confirmed) {
+		if (confirmed) {
 			localStorage.removeItem("level");
 			gameState.currentLevel = 0;
 			loadLevel(gameState.currentLevel);
-			console.log("Spiel zurückgesetzt.");
+			console.log("Game reseted ...");
 			location.reload();
 		}
 	}
-	if (e.key === "g") console.log("Aufgezeichnete Eingaben:", recordedInputs);
+	if (e.key === "g") console.log("Recorded inputs:", recordedInputs);
 });
 
 export function playRecording() {
-	console.log("Wiedergabe der aufgezeichneten Eingaben...");
+	console.log("Playing recorded inputs ...");
 	for (let input of recordedInputs) {
 		setTimeout(() => {
 			if (input.type === "keydown") {
@@ -122,5 +122,5 @@ export function playRecording() {
 			}
 		}, input.time);
 	}
-	console.log("Ende der Wiedergabe.");
+	console.log("End of recorded inputs reached ...");
 }

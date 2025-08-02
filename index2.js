@@ -1,11 +1,11 @@
 import levels from "./js/levels.js";
-import { gameState, canvas } from "./js/variablen.js";
+import { gameState, canvas } from "./js/variables.js";
 import { draw } from "./js/draw.js";
-import "./entwicklertools/tastenaktionen_aufzeichnen.js";
+import "./entwicklertools/recordUserInputs.js";
 import {
 	recordedInputs,
 	playRecording,
-} from "./entwicklertools/tastenaktionen_aufzeichnen.js";
+} from "./entwicklertools/recordUserInputs.js";
 import { checkCoinCollisions, checkButtons, checkGoal, checkPortals, checkPowerUps, checkSpikeCollision } from "./js/checkElements.js";
 
 export function loadLevel(index) {

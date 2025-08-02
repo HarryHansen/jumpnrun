@@ -1,5 +1,5 @@
 // import all necessary modules and variables
-import { gameState } from "./variablen.js";
+import { gameState } from "./variables.js";
 import levels from "./levels.js";
 import {
 	loadLevel,

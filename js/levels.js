@@ -1,5 +1,5 @@
 const levels = [
-	// Level 1 – Einstieg
+	// Level 1 – easy start
 	{
 		platforms: [
 			{
@@ -103,7 +103,7 @@ const levels = [
 		height: 800,
 	},
 
-	// Level 2 – viele kleine Plattformen
+	// Level 2 – lots of small platforms
 	{
 		platforms: [
 			{
@@ -207,7 +207,7 @@ const levels = [
 		height: 800,
 	},
 
-	// Level 3 - Kreuz und Quer
+	// Level 3 - cross and cross
 	{
 		platforms: [
 			{
@@ -383,7 +383,7 @@ const levels = [
 		height: 800,
 	},
 
-	// Level 4 – ein Bonuscoin: schwer erreichbar
+	// Level 4 – including one bonus coin
 	{
 		platforms: [
 			{
@@ -487,7 +487,7 @@ const levels = [
 		height: 800,
 	},
 
-	//Level 5 - Versteckte Plattformen
+	//Level 5 - hidden platforms - you need to activate buttons to reveal them
 	{
 		platforms: [
 			{
@@ -671,7 +671,7 @@ const levels = [
 		height: 800,
 	},
 
-	//Level 6 - Höhere Sprünge durch Power-Trank
+	//Level 6 - higher jump strength with power-up
 	{
 		platforms: [
 			{
@@ -807,7 +807,7 @@ const levels = [
 		height: 800,
 	},
 
-	//Level 7 - Schwebeeffekt
+	//Level 7 - floating effect
 	{
 		platforms: [
 			{
@@ -962,7 +962,7 @@ const levels = [
 		height: 800,
 	},
 
-	//Level 8 - Magnet
+	//Level 8 - magnet
 	{
 		platforms: [
 			{
@@ -1085,7 +1085,7 @@ const levels = [
 		height: 800,
 	},
 
-	//Level 9 - Spikes Boden + Ganz viele Coins
+	//Level 9 - ground full of spikes with lots of coins and plattfroms
 	{
 		platforms: [
 			{
@@ -1699,7 +1699,7 @@ const levels = [
 		height: 800,
 	},
 
-	// Level 10 – High Jump + Spikes (KI generiert und bearbeitet)
+	// Level 10 – higher jumping strength due to power-up
 	{
 		platforms: [
 			{
@@ -1966,7 +1966,7 @@ const levels = [
 		height: 800,
 	},
 
-	// Level 11 – Plattform-Klettern + unsichtbare Plattformen
+	// Level 11 – Hidden platforms - you can't even activate them by a button
 	{
 		platforms: [
 			{
@@ -2120,7 +2120,7 @@ const levels = [
 		height: 800,
 	},
 
-	// Level 12 - Fallen und bewegliche Plattformen
+	// Level 12 - moving platforms
 	{
 		platforms: [
 			{
@@ -2292,7 +2292,7 @@ const levels = [
 			}, // unter Goal
 		],
 		movPlatforms: [
-			// Bewegliche Plattform (horizontal)
+			// Moving platforms
 			{
 				x: 100,
 				y: 280,
@@ -2316,7 +2316,7 @@ const levels = [
 				group: "A",
 			},
 
-			// Bewegliche Plattform (vertikal, durch Button aktiviert)
+			// Moving platform that can be activated by a button
 			{
 				x: 650,
 				y: 670,
@@ -2379,7 +2379,7 @@ const levels = [
 		width: 800,
 		height: 800,
 	},
-	// Level 13 - Sprungtaktik
+	// Level 13 - just a simple level
 	{
 		platforms: [
 			// Boden
@@ -2541,7 +2541,7 @@ const levels = [
 		width: 800,
 		height: 800,
 	},
-	// Level 14 - Schwebepfade und Präzisionssprünge + Zeitdruck
+	// Level 14 - extra hard level due to a short-lasting power-up
 	{
 		platforms: [
 			// Boden
@@ -2660,7 +2660,7 @@ const levels = [
 		width: 800,
 		height: 800,
 	},
-	// Level 15 - Schwebepfade und Präzisionssprünge
+	// Level 15 - Level divided into to parts
 	{
 		platforms: [
 			// Boden
@@ -2931,7 +2931,7 @@ const levels = [
 		width: 800,
 		height: 800,
 	},
-	// Level 16 - Schwebepfade und Präzisionssprünge
+	// Level 16 - bigger level
 	{
 		platforms: [
 			// Boden
