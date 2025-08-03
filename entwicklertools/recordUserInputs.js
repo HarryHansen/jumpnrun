@@ -1,5 +1,5 @@
 import { gameState } from "../js/variables.js";
-import { loadLevel } from "../index2.js";
+import { loadLevel } from "../index.js";
 
 export let recordedInputs = [];
 

@@ -34,6 +34,7 @@ export function loadLevel(index) {
 	gameState.player.y = 0;
 	gameState.player.ySpeed = 0;
 	gameState.player.onGround = false;
+	gameState.isFloating = false;
 	localStorage.setItem("level", index);
 	console.log("level" + gameState.currentLevel);
 	gameState.jumpStrength = -10; // default jump strength

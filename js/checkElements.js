@@ -1,9 +1,7 @@
 // import all necessary modules and variables
 import { gameState } from "./variables.js";
 import levels from "./levels.js";
-import {
-	loadLevel,
-} from "../index2.js";
+import { loadLevel } from "../index.js";
 
 export function checkCoinCollisions() {
 	for (let coin of gameState.coins) {
