@@ -1,4 +1,4 @@
-This is a - hopefully - cool game. You control a character - a red square - through a parcour of platforms. Meanwhile, you have to collect some coins. 
+This is a - hopefully - cool game. You control a character - a red square - moving through a parcour of platforms. Meanwhile, you have to collect some coins. 
 When you've collected all coins, you can jump to the next level by a portal - a blue square.
 
 <img width="803" height="800" alt="Level 1" src="https://github.com/user-attachments/assets/c84f0b6c-0f4c-4a88-8867-5e23aa2dd0c3" />
