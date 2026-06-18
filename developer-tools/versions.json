@@ -1,13 +1,21 @@
 {
     "contributor": "HarryHansen",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A simple jump and run game implemented in JavaScript.",
     "changes": [
-        "Added this version control file to track changes and versions of the game.",
-        "Restructured the draw function to make it more organized and maintainable.",
-        "Added a .gitignore file to prevent unnecessary files from being tracked in version control."
+        "Updated README.md to include instructions on how to run the game and a brief overview of the game mechanics."
     ],
     "formerVersions": [
-        "hasen't been properly tracked before, but this file will help to keep track of future changes and versions."
+        {
+            "contributor": "HarryHansen",
+            "version": "1.0.0",
+            "description": "A simple jump and run game implemented in JavaScript.",
+            "changes": [
+                "Added this version control file to track changes and versions of the game.",
+                "Restructured the draw function to make it more organized and maintainable.",
+                "Added a .gitignore file to prevent unnecessary files from being tracked in version control."
+            ]
+        },
+        "hasn't been properly tracked before, but this file will help to keep track of future changes and versions."
     ]
 }
