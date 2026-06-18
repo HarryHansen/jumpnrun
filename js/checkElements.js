@@ -100,7 +100,7 @@ export function checkPowerUps() {
 					break;
 				case "magnet":
 					gameState.refreshIntervalId = setInterval(updateMagnetEffect, 150);
-					setTimeout(function () {
+					setTimeout(() => {
 						clearInterval(gameState.refreshIntervalId);
 						gameState.magnetActive = false;
 					}, 30000);
@@ -109,7 +109,7 @@ export function checkPowerUps() {
 					gameState.jumpStrength = -15;
 					break;
 				default:
-					console.warn("Unbekannter Power-Up-Typ:", powerUp.type);
+					console.warn("Unknown power-up type:", powerUp.type);
 					break;
 			}
 		}
@@ -131,7 +131,7 @@ export function checkGoal() {
 			loadLevel(gameState.currentLevel);
 			gameState.score = 0;
 		} else {
-			alert("🎉 Du hast alle Level geschafft!");
+			alert("🎉 You have completed all levels! Congratulations!");
 			gameState.keys = {};
 			gameState.score = 0;
 			gameState.currentLevel = 0; // Load the first level again
@@ -183,15 +183,15 @@ export function activateFloating() {
 export function updateMagnetEffect() {
 	// This function applies the magnet effect to coins within a certain radius of the player.
 	gameState.magnetActive = true;
-	const { player, coins, MAGNET_RADIUS, MAGNET_SPEED } = gameState;
+	const { player, coins, magnetRadius, magnetSpeed } = gameState;
 	for (let coin of coins) {
 		let dx = player.x - coin.x;
 		let dy = player.y - coin.y;
 		let distance = Math.sqrt(dx * dx + dy * dy);
-		if (distance < MAGNET_RADIUS) {
+		if (distance < magnetRadius) {
 			let angle = Math.atan2(dy, dx);
-			coin.x += Math.cos(angle) * MAGNET_SPEED;
-			coin.y += Math.sin(angle) * MAGNET_SPEED;
+			coin.x += Math.cos(angle) * magnetSpeed;
+			coin.y += Math.sin(angle) * magnetSpeed;
 		}
 	}
 }

@@ -1,11 +1,7 @@
 import levels from "./js/levels.js";
 import { gameState, canvas } from "./js/variables.js";
 import { draw } from "./js/draw.js";
-import "./entwicklertools/recordUserInputs.js";
-import {
-	recordedInputs,
-	playRecording,
-} from "./entwicklertools/recordUserInputs.js";
+import "./developer-tools/recordUserInputs.js";
 import { checkCoinCollisions, checkButtons, checkGoal, checkPortals, checkPowerUps, checkSpikeCollision } from "./js/checkElements.js";
 
 export function loadLevel(index) {
@@ -89,7 +85,7 @@ function checkCollisions() {
 			gameState.player.onGround = true;
 		}
 	}
-	// Prüfe bewegliche Plattformen
+	// Check movable platforms
 	for (let movPlat of gameState.movPlatforms) {
 		if (movPlat.active === true) {
 			const ignore = gameState.keys["ArrowDown"] && !movPlat.solid;
@@ -101,7 +97,7 @@ function checkCollisions() {
 				gameState.player.x + gameState.player.width > movPlat.x &&
 				gameState.player.x < movPlat.x + movPlat.width;
 
-			// Speichere die vorherige Position
+			// Save prior position
 			movPlat.previousY = movPlat.y;
 			movPlat.previousX = movPlat.x;
 

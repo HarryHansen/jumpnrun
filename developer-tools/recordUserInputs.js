@@ -1,3 +1,6 @@
+// This file is used to record user inputs for later playback. It can be used for debugging, testing, or creating demos of the game.
+// It doesn't seem to work quite right, though
+
 import { gameState } from "../js/variables.js";
 import { loadLevel } from "../index.js";
 

@@ -4,35 +4,10 @@ export function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	canvas.width = gameState.width;
 	canvas.height = gameState.height;
-	// Draw static platforms
-	for (let plat of gameState.platforms) {
-		ctx.fillStyle = plat.isBroken ? "transparent" : plat.color;
-		ctx.fillRect(plat.x, plat.y, plat.width, plat.height);
-	}
 
 	drawPortals(ctx);
-	// Draw player
-	ctx.fillStyle = gameState.player.color;
-	ctx.fillRect(
-		gameState.player.x,
-		gameState.player.y,
-		gameState.player.width,
-		gameState.player.height,
-	);
-
-	// Draw moving platforms
-	for (let movPlat of gameState.movPlatforms) {
-		ctx.fillStyle = movPlat.isBroken ? "transparent" : movPlat.color;
-		ctx.fillRect(movPlat.x, movPlat.y, movPlat.width, movPlat.height);
-	}
-	ctx.fillStyle = gameState.player.color;
-	ctx.fillRect(
-		gameState.player.x,
-		gameState.player.y,
-		gameState.player.width,
-		gameState.player.height,
-	);
-
+	drawStaticPlatforms(ctx);
+	drawMovingPlatforms(ctx);
 	drawCoins(ctx);
 	drawScore(ctx);
 	drawGoal(ctx);
@@ -42,6 +17,7 @@ export function draw() {
 	drawFloatingEffect(ctx, gameState.player);
 	drawMagnetAura(ctx, gameState.player);
 	drawSpikes(ctx);
+	drawPlayer(ctx);
 }
 
 function drawCoins(ctx) {
@@ -175,7 +151,7 @@ function drawMagnetAura(ctx, player) {
 	ctx.arc(
 		player.x + player.width / 2,
 		player.y + player.height / 2,
-		gameState.MAGNET_RADIUS,
+		gameState.magnetRadius,
 		0,
 		Math.PI * 2,
 	);
@@ -184,4 +160,31 @@ function drawMagnetAura(ctx, player) {
 	ctx.setLineDash([5, 5]);
 	ctx.stroke();
 	ctx.restore();
+}
+
+function drawPlayer(ctx) {
+	// Draw player
+	ctx.fillStyle = gameState.player.color;
+	ctx.fillRect(
+		gameState.player.x,
+		gameState.player.y,
+		gameState.player.width,
+		gameState.player.height,
+	);
+}
+
+function drawStaticPlatforms(ctx) {
+	// Draw static platforms
+	for (let plat of gameState.platforms) {
+		ctx.fillStyle = plat.isBroken ? "transparent" : plat.color;
+		ctx.fillRect(plat.x, plat.y, plat.width, plat.height);
+	}
+}
+
+function drawMovingPlatforms(ctx) {
+	// Draw moving platforms
+	for (let movPlat of gameState.movPlatforms) {
+		ctx.fillStyle = movPlat.isBroken ? "transparent" : movPlat.color;
+		ctx.fillRect(movPlat.x, movPlat.y, movPlat.width, movPlat.height);
+	}
 }
