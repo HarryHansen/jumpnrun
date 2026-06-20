@@ -163,14 +163,23 @@ function drawMagnetAura(ctx, player) {
 }
 
 function drawPlayer(ctx) {
-	// Draw player
-	ctx.fillStyle = gameState.player.color;
-	ctx.fillRect(
-		gameState.player.x,
-		gameState.player.y,
-		gameState.player.width,
-		gameState.player.height,
-	);
+	switch (gameState.player.characterID) {
+		case 0:
+			gameState.character.drawRectangle(ctx, "red", gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+			break;
+		case 1: 
+			gameState.character.drawStarCharacter(ctx, gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+			break;
+		case 2: 
+			gameState.character.drawTargetCharacter(ctx, gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+			break;
+		case 3: 
+			gameState.character.drawAtomCharacter(ctx, gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+			break;
+		default:
+			gameState.character.drawRectangle(ctx, "yellow", gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+			break;
+	}
 }
 
 function drawStaticPlatforms(ctx) {

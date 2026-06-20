@@ -7,7 +7,23 @@
 	</head>
 	<body>
 		<canvas id="game" width="800" height="800"></canvas>
+		<div class="hidden shop" id="shop">
+			<h2>Shop</h2>
+			<p id="shopCoinOverview" class="shopCoinOverview">0 coins &#129689;</p>
+			<div id="character1" class="character"></div>
+		</div>
+		<button id="shopButton" class="shopButton">&#128722;</button>
 		<script type="module" src="./js/variables.js"></script>
 		<script type="module" src="./index.js"></script>
+		<script>
+			// Prevent scrolling on page with Keys
+			const keysToBlock = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "]; 
+
+			window.addEventListener("keydown", (e) => {
+				if (keysToBlock.includes(e.key)) {
+					e.preventDefault(); 
+				}
+			}, { passive: false }); 
+		</script>
 	</body>
 </html>

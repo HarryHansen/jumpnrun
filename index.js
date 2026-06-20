@@ -32,6 +32,7 @@ export function loadLevel(index) {
 	gameState.player.onGround = false;
 	gameState.isFloating = false;
 	localStorage.setItem("level", index);
+	localStorage.setItem("overallCollectedCoins", 0)
 	console.log("level" + gameState.currentLevel);
 	gameState.jumpStrength = -10; // default jump strength
 	clearInterval(gameState.refreshIntervalId);

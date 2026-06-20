@@ -1,3 +1,7 @@
+html {
+	overscroll-behavior: none;
+}
+
 body {
 	margin: 0;
 	background-color: #222;
@@ -7,4 +11,21 @@ canvas {
 	margin: 0 auto;
 	background-color: #87ceeb; /* background color for the canvas - suppost to look like sky*/
 	border: 2px solid black;
+}
+
+.shopButton {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	font-size: 24px;
+	padding: 10px;
+	background-color: #ffffff;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0 0 15px 5px #87cfeb6a;
+}
+
+.hidden {
+	display: none;
 }

@@ -1,11 +1,29 @@
 {
     "contributor": "HarryHansen",
-    "version": "1.0.1",
-    "description": "A simple jump and run game implemented in JavaScript.",
+    "version": "1.1.0-beta.1",
+    "description": "A simple jump and run game implemented with various fun levels (including special power-ups) in JavaScript.",
     "changes": [
-        "Updated README.md to include instructions on how to run the game and a brief overview of the game mechanics."
+        "Added a shop button to the game interface, allowing players to access the in-game shop which hasn't been developed yet.",
+        "Implemented a function to prevent scrolling on the page when using arrow keys or spacebar, enhancing the gaming experience by keeping the focus on the game canvas.",
+        "Added new player characters. You can't choose them yet, but they will be available in the shop soon.",
+        "Added an asset folder (to public/assets) to organize game assets such as character images and power-up icons which will be used in the shop."
+    ],
+    "todo": [
+        "Develop the in-game shop where players can spend their coins to purchase new characters and power-ups.",
+        "Implement a character selection system that allows players to choose from the available characters before starting the game.",
+        "Update the README.md file to include instructions on how to access the shop and use the new features.",
+        "Track the overall collected coins and display them in the shop interface allowing the user to buy a different character.",
+        "Provide screenshots of the charcters with better quality."
     ],
     "formerVersions": [
+        {
+            "contributor": "HarryHansen",
+            "version": "1.0.1",
+            "description": "A simple jump and run game implemented in JavaScript.",
+            "changes": [
+                "Updated README.md to include instructions on how to run the game and a brief overview of the game mechanics."
+            ]
+        }, 
         {
             "contributor": "HarryHansen",
             "version": "1.0.0",
